@@ -11,3 +11,6 @@ stop:
 
 logs:
 	docker-compose -f $(COMPOSE_FILE) logs
+
+connect:
+	docker exec -it controller su - ansible && bash
