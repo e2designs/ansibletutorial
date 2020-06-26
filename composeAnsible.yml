@@ -1,14 +1,14 @@
 version: "3.8"
 services:
  controller:
+   container_name: controller
    build:
      context: ./
      dockerfile: Dockerfile
      args:
-       rsa: con_rsa
-       pub: con_rsa.pub
+       RSA: con_rsa
+       PUB: con_rsa.pub
    environment:
-     - "HOSTNAME:controller"
      - "ANSIBLE_USER:ansible"
      - "ANSIBLE_PWD:!ansibl3"
    networks:
@@ -18,14 +18,14 @@ services:
    command: bash
 
  ansible1:
+   container_name: ansible1
    build:
      context: ./
      dockerfile: Dockerfile
      args:
-       rsa: a1_rsa
-       pub: a1_rsa.pub
+       RSA: a1_rsa
+       PUB: a1_rsa.pub
    environment:
-     - "HOSTNAME:ansible1"
      - "ANSIBLE_USER:ansible"
      - "ANSIBLE_PWD:!ansibl3"
    networks:
@@ -37,14 +37,14 @@ services:
    command: bash
 
  ansible2:
+   container_name: ansible2
    build:
      context: ./
      dockerfile: Dockerfile
      args:
-       rsa: a2_rsa
-       pub: a2_rsa.pub
+       RSA: a2_rsa
+       PUB: a2_rsa.pub
    environment:
-     - "HOSTNAME:ansible2"
      - "ANSIBLE_USER:ansible"
      - "ANSIBLE_PWD:!ansibl3"
    networks:

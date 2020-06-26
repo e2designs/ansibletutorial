@@ -1,6 +1,6 @@
 FROM ubuntu:latest
-ARG rsa
-ARG pub
+ARG RSA
+ARG PUB
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     sudo \
@@ -22,8 +22,8 @@ RUN rm /usr/bin/python||true && ln -s /usr/bin/python3 /usr/bin/python
 RUN mkdir /var/run/sshd
 RUN mkdir /home/ansible
 RUN mkdir -m700 /home/ansible/.ssh
-COPY ${rsa} /home/ansible/.ssh/id_rsa
-COPY ${pub} /home/ansible/.ssh/id_rsa.pub
+COPY ${RSA} /home/ansible/.ssh/id_rsa
+COPY ${PUB} /home/ansible/.ssh/id_rsa.pub
 COPY authorized_keys /home/ansible/.ssh/authorized_keys
 RUN groupadd ansible -g 9001
 RUN useradd -g ansible -u 9001 ansible -d /home/ansible --shell /bin/bash
@@ -41,5 +41,5 @@ RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so
 
 ENV NOTVISIBLE "in users profile"
 RUN echo "export VISIBLE=now" >> /etc/profile
-ENTRYPOINT service ssh restart && bash
+ENTRYPOINT service ssh restart && bash && su - ansible
 
