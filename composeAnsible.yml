@@ -1,0 +1,59 @@
+version: "3.8"
+services:
+ controller:
+   build:
+     context: ./
+     dockerfile: Dockerfile
+     args:
+       rsa: con_rsa
+       pub: con_rsa.pub
+   environment:
+     - "HOSTNAME:controller"
+     - "ANSIBLE_USER:ansible"
+     - "ANSIBLE_PWD:!ansibl3"
+   networks:
+     - ansible_net
+   restart: always
+   stdin_open: true
+   command: bash
+
+ ansible1:
+   build:
+     context: ./
+     dockerfile: Dockerfile
+     args:
+       rsa: a1_rsa
+       pub: a1_rsa.pub
+   environment:
+     - "HOSTNAME:ansible1"
+     - "ANSIBLE_USER:ansible"
+     - "ANSIBLE_PWD:!ansibl3"
+   networks:
+     - ansible_net
+   depends_on:
+     - controller
+   restart: always
+   stdin_open: true
+   command: bash
+
+ ansible2:
+   build:
+     context: ./
+     dockerfile: Dockerfile
+     args:
+       rsa: a2_rsa
+       pub: a2_rsa.pub
+   environment:
+     - "HOSTNAME:ansible2"
+     - "ANSIBLE_USER:ansible"
+     - "ANSIBLE_PWD:!ansibl3"
+   networks:
+     - ansible_net
+   depends_on:
+     - controller
+   restart: always
+   stdin_open: true
+   command: bash
+
+networks:
+  ansible_net:
