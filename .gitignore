@@ -1,2 +1,6 @@
 .idea/
 .pyc
+ansible_files/.ansible
+ansible_files/.bash_history
+
+
