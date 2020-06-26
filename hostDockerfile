@@ -1,6 +1,7 @@
 FROM ubuntu:latest
 ARG RSA
 ARG PUB
+ARG HOST
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     sudo \
@@ -14,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     libssl-dev \
     libffi-dev \
     net-tools \
-    iputils-ping \
+    iputils-ping\
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN rm /usr/bin/python3 && ln -s /usr/bin/python3.8 /usr/bin/python3

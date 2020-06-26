@@ -13,4 +13,4 @@ logs:
 	docker-compose -f $(COMPOSE_FILE) logs
 
 connect:
-	docker exec -it controller su - ansible && bash
+	docker exec -it controller su - ansible && bash ||true

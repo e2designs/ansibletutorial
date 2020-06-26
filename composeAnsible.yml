@@ -4,10 +4,11 @@ services:
    container_name: controller
    build:
      context: ./
-     dockerfile: Dockerfile
+     dockerfile: contDockerfile
      args:
        RSA: con_rsa
        PUB: con_rsa.pub
+       HOST: controller
    environment:
      - "ANSIBLE_USER:ansible"
      - "ANSIBLE_PWD:!ansibl3"
@@ -21,7 +22,7 @@ services:
    container_name: ansible1
    build:
      context: ./
-     dockerfile: Dockerfile
+     dockerfile: hostDockerfile
      args:
        RSA: a1_rsa
        PUB: a1_rsa.pub
@@ -40,7 +41,7 @@ services:
    container_name: ansible2
    build:
      context: ./
-     dockerfile: Dockerfile
+     dockerfile: hostDockerfile
      args:
        RSA: a2_rsa
        PUB: a2_rsa.pub

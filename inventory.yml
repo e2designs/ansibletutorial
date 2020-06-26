@@ -1,0 +1,7 @@
+[webservers]
+ansible1
+ansible2
+
+[dbservers]
+ansible1
+ansible2
