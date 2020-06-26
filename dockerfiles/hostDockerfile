@@ -25,7 +25,7 @@ RUN mkdir /home/ansible
 RUN mkdir -m700 /home/ansible/.ssh
 COPY ${RSA} /home/ansible/.ssh/id_rsa
 COPY ${PUB} /home/ansible/.ssh/id_rsa.pub
-COPY authorized_keys /home/ansible/.ssh/authorized_keys
+COPY keys/authorized_keys /home/ansible/.ssh/authorized_keys
 RUN groupadd ansible -g 9001
 RUN useradd -g ansible -u 9001 ansible -d /home/ansible --shell /bin/bash
 RUN echo 'ansible:!ansibl3' | chpasswd
