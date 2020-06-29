@@ -5,9 +5,6 @@ services:
    build:
      context: ./
      dockerfile: dockerfiles/contDockerfile
-     args:
-       RSA: keys/con_rsa
-       PUB: keys/con_rsa.pub
    environment:
      - "ANSIBLE_USER:ansible"
      - "ANSIBLE_PWD:!ansibl3"

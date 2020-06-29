@@ -1,7 +1,4 @@
 FROM ubuntu:latest
-ARG RSA
-ARG PUB
-ARG HOST
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     sudo \
