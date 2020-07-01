@@ -4,4 +4,4 @@ ansible_files/.ansible
 ansible_files/.bash_history
 ansible_files/.ssh/known_hosts
 .viminfo
-
+ansible_files/.sudo*

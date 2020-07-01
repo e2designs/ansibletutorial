@@ -17,3 +17,12 @@ To run:
     make run
     # Connect to the ansible controller as ansible user
     make connect 
+
+Windows WSL Note:
+
+    Windows WSL requires this repo to be in the /mnt/c path.
+    For docker to properly share volumes:
+
+        mkdir -p /c; sudo mount --bind /mnt/c/ /c
+        
+    Reference: https://github.com/docker/for-win/issues/2151
