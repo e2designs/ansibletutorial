@@ -1,7 +1,9 @@
 .idea/
 .pyc
-ansible_files/.ansible
-ansible_files/.bash_history
-ansible_files/.ssh/known_hosts
+.ansible
+.bash_history
+known_hosts*
+.sudo*
 .viminfo
-ansible_files/.sudo*
+.vimrc
+.python_history
