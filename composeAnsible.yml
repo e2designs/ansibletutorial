@@ -5,6 +5,9 @@ services:
    build:
      context: ./
      dockerfile: dockerfiles/contDockerfile
+     args:
+       RSA: keys/cont_rsa
+       PUB: keys/cont_rsa.pub
    environment:
      - "ANSIBLE_USER:ansible"
      - "ANSIBLE_PWD:!ansibl3"
@@ -14,7 +17,7 @@ services:
    stdin_open: true
    command: bash
    volumes:
-    - "$PWD/ansible_files/:/home/ansible/"
+       - "$PWD/ansible_files/:/home/ansible/ansible_files"
 
  ansible1:
    container_name: ansible1
