@@ -1,7 +1,6 @@
 FROM ubuntu:latest
 ARG RSA
 ARG PUB
-ARG HOST
 RUN apt-get update && apt-get install -y \
     --no-install-recommends \
     sudo \
@@ -27,6 +26,7 @@ RUN mkdir -m700 /home/ansible/.ssh
 COPY ${RSA} /home/ansible/.ssh/id_rsa
 COPY ${PUB} /home/ansible/.ssh/id_rsa.pub
 COPY keys/authorized_keys /home/ansible/.ssh/authorized_keys
+RUN chmod 700 /home/ansible/.ssh/*
 RUN groupadd ansible -g 9001
 RUN useradd -g ansible -u 9001 ansible -d /home/ansible --shell /bin/bash
 RUN echo 'ansible:!ansibl3' | chpasswd
@@ -37,6 +37,8 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 # RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
 RUN sed -i 's/#Listen/Listen/' /etc/ssh/sshd_config
+RUN sed -i 's/#SyslogFacility AUTH/SyslogFacility AUTHPRIV/' /etc/ssh/sshd_config
+RUN sed -i 's/#LogLevel/LogLevel/' /etc/ssh/sshd_config
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
